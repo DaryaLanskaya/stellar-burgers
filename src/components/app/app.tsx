@@ -29,13 +29,14 @@ function App() {
   const location = useLocation(); // Возвращает текущее местоположение.
   const background = location.state?.background; // Нужно для безопасного доступа к данным, переданным через состояние навигации.
   const navigate = useNavigate(); // Возвращает функцию, которая позволяет программно перемещаться по страницам браузера в ответ на действия пользователя или внешние эффекты.
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // Хук из react-redux, который возвращает функцию dispatch для отправки действий (actions) в Redux-хранилище.
+
   const handleClose = () => {
     navigate(-1);
   };
 
   useEffect(() => {
-    dispatch(getIngredients());
+    dispatch(getIngredients()); // getIngredients() — экшен для загрузки данных
   }, [dispatch]);
 
   return (
