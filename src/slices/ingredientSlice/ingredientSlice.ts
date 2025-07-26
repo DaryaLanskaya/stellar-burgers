@@ -29,7 +29,7 @@ const ingredientsSlice = createSlice({
   reducers: {}, // Можно сразу описывать редюсеры и экшены, которые они обрабатывают.
   selectors: {
     getIngredientsData: (state) => state.ingredients, // Селектор для получения элементов
-    getIsLoading: (state) => state.loadingData
+    getIsLoading: (state) => state.loadingData // Состояние загрузки
   },
 
   // Можно добавить синхронные редьюсеры
@@ -59,5 +59,5 @@ const ingredientsSlice = createSlice({
   }
 });
 
-export const { getIngredientsData } = ingredientsSlice.selectors; // Получение элементов(ингредиентов)
+export const { getIngredientsData, getIsLoading } = ingredientsSlice.selectors; // Получение элементов(ингредиентов) и статуса загрузки
 export const ingredientsSliceReducer = ingredientsSlice.reducer; // Редюсер, отвечающий за получение элементов
