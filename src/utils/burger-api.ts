@@ -10,9 +10,7 @@ const checkResponse = <T>(res: Response): Promise<T> =>
 
 // Базовый тип для всех ответов сервера.
 // Гарантирует наличие поля success: boolean.
-type TServerResponse<T> = {
-  success: boolean;
-} & T;
+type TServerResponse<T> = { success: boolean } & T;
 
 // Оба токена являются JWT (JSON Web Tokens).
 type TRefreshResponse = TServerResponse<{
@@ -24,9 +22,7 @@ type TRefreshResponse = TServerResponse<{
 export const refreshToken = (): Promise<TRefreshResponse> => // — указывает, что функция возвращает Promise с типом TRefreshResponse (тип для ответа API).
   fetch(`${URL}/auth/token`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
+    headers: { 'Content-Type': 'application/json;charset=utf-8' },
     body: JSON.stringify({
       token: localStorage.getItem('refreshToken') // В body передаётся текущий refreshToken из localStorage.
     })
@@ -126,9 +122,7 @@ export const orderBurgerApi = (data: string[]) =>
       'Content-Type': 'application/json;charset=utf-8',
       authorization: getCookie('accessToken')
     } as HeadersInit,
-    body: JSON.stringify({
-      ingredients: data
-    })
+    body: JSON.stringify({ ingredients: data })
   }).then((data) => {
     if (data?.success) return data;
     return Promise.reject(data);
@@ -145,9 +139,7 @@ type TOrderResponse = TServerResponse<{
 export const getOrderByNumberApi = (number: number) =>
   fetch(`${URL}/orders/${number}`, {
     method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
+    headers: { 'Content-Type': 'application/json' }
   }).then((res) => checkResponse<TOrderResponse>(res));
 
 export type TRegisterData = {
@@ -167,9 +159,7 @@ type TAuthResponse = TServerResponse<{
 export const registerUserApi = (data: TRegisterData) =>
   fetch(`${URL}/auth/register`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
+    headers: { 'Content-Type': 'application/json;charset=utf-8' },
     body: JSON.stringify(data)
   })
     .then((res) => checkResponse<TAuthResponse>(res))
@@ -178,19 +168,14 @@ export const registerUserApi = (data: TRegisterData) =>
       return Promise.reject(data);
     });
 
-export type TLoginData = {
-  email: string;
-  password: string;
-};
+export type TLoginData = { email: string; password: string };
 
 // Авторизация пользователя (loginUserApi)
 
 export const loginUserApi = (data: TLoginData) =>
   fetch(`${URL}/auth/login`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
+    headers: { 'Content-Type': 'application/json;charset=utf-8' },
     body: JSON.stringify(data)
   })
     .then((res) => checkResponse<TAuthResponse>(res))
@@ -203,9 +188,7 @@ export const loginUserApi = (data: TLoginData) =>
 export const forgotPasswordApi = (data: { email: string }) =>
   fetch(`${URL}/password-reset`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
+    headers: { 'Content-Type': 'application/json;charset=utf-8' },
     body: JSON.stringify(data)
   })
     .then((res) => checkResponse<TServerResponse<{}>>(res))
@@ -218,9 +201,7 @@ export const forgotPasswordApi = (data: { email: string }) =>
 export const resetPasswordApi = (data: { password: string; token: string }) =>
   fetch(`${URL}/password-reset/reset`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
+    headers: { 'Content-Type': 'application/json;charset=utf-8' },
     body: JSON.stringify(data)
   })
     .then((res) => checkResponse<TServerResponse<{}>>(res))
@@ -234,9 +215,7 @@ type TUserResponse = TServerResponse<{ user: TUser }>;
 // Получение данных пользователя (getUserApi). Получает данные авторизованного пользователя.Использует fetchWithRefresh для автоматического обновления токена.Тип ответа: { success: boolean, user: TUser }.Требует accessToken из cookies
 export const getUserApi = () =>
   fetchWithRefresh<TUserResponse>(`${URL}/auth/user`, {
-    headers: {
-      authorization: getCookie('accessToken')
-    } as HeadersInit
+    headers: { authorization: getCookie('accessToken') } as HeadersInit
   });
 
 //  Обновление данных пользователя (updateUserApi)
@@ -259,10 +238,6 @@ export const updateUserApi = (user: Partial<TRegisterData>) =>
 export const logoutApi = () =>
   fetch(`${URL}/auth/logout`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
-    body: JSON.stringify({
-      token: localStorage.getItem('refreshToken')
-    })
+    headers: { 'Content-Type': 'application/json;charset=utf-8' },
+    body: JSON.stringify({ token: localStorage.getItem('refreshToken') })
   }).then((res) => checkResponse<TServerResponse<{}>>(res));

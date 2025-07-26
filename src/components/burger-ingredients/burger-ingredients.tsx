@@ -3,8 +3,15 @@ import { useInView } from 'react-intersection-observer';
 
 import { TTabMode } from '@utils-types';
 import { BurgerIngredientsUI } from '../ui/burger-ingredients';
+import { useSelector } from '../../services/store';
+import { getIngredientsData } from '../../slices/ingredientSlice/ingredientSlice';
+import { Preloader } from '@ui';
 
 export const BurgerIngredients: FC = () => {
+  const ingredients = useSelector(getIngredientsData);
+  // const isLoading = useSelector(getIsLoading);
+
+  console.log(ingredients);
   /** TODO: взять переменные из стора */
   const buns = [];
   const mains = [];
@@ -15,17 +22,11 @@ export const BurgerIngredients: FC = () => {
   const titleMainRef = useRef<HTMLHeadingElement>(null);
   const titleSaucesRef = useRef<HTMLHeadingElement>(null);
 
-  const [bunsRef, inViewBuns] = useInView({
-    threshold: 0
-  });
+  const [bunsRef, inViewBuns] = useInView({ threshold: 0 });
 
-  const [mainsRef, inViewFilling] = useInView({
-    threshold: 0
-  });
+  const [mainsRef, inViewFilling] = useInView({ threshold: 0 });
 
-  const [saucesRef, inViewSauces] = useInView({
-    threshold: 0
-  });
+  const [saucesRef, inViewSauces] = useInView({ threshold: 0 });
 
   useEffect(() => {
     if (inViewBuns) {
@@ -47,21 +48,20 @@ export const BurgerIngredients: FC = () => {
       titleSaucesRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  return null;
-
   return (
-    <BurgerIngredientsUI
-      currentTab={currentTab}
-      buns={buns}
-      mains={mains}
-      sauces={sauces}
-      titleBunRef={titleBunRef}
-      titleMainRef={titleMainRef}
-      titleSaucesRef={titleSaucesRef}
-      bunsRef={bunsRef}
-      mainsRef={mainsRef}
-      saucesRef={saucesRef}
-      onTabClick={onTabClick}
-    />
+    <>123</>
+    // <BurgerIngredientsUI
+    //   currentTab={currentTab}
+    //   buns={buns}
+    //   mains={mains}
+    //   sauces={sauces}
+    //   titleBunRef={titleBunRef}
+    //   titleMainRef={titleMainRef}
+    //   titleSaucesRef={titleSaucesRef}
+    //   bunsRef={bunsRef}
+    //   mainsRef={mainsRef}
+    //   saucesRef={saucesRef}
+    //   onTabClick={onTabClick}
+    // />
   );
 };
