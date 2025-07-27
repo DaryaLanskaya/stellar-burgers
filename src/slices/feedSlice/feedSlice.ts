@@ -13,7 +13,7 @@ export type TFeedSlice = {
   error: string | null | undefined; // Статус ошибки
 };
 
-// начальное состояние хранилища
+// Начальное состояние хранилища
 export const initialState: TFeedSlice = {
   feeds: {
     orders: [],
@@ -58,12 +58,25 @@ const feedSlice = createSlice({
   }
 });
 
-// получение всего слайса feeds
+// Получение всего слайса feeds
 const feedsSliceSelectors = (state: RootState) => state.feeds;
 
+// Получение всех заказов из слайса
 export const getOrdersData = createSelector(
   [feedsSliceSelectors],
   (state) => state.feeds.orders
+);
+
+// Получение заказов за день из слайса
+export const getTodayOrders = createSelector(
+  [feedsSliceSelectors],
+  (state) => state.feeds.totalToday
+);
+
+// Получение всех заказов из слайса
+export const getTotalOrders = createSelector(
+  [feedsSliceSelectors],
+  (state) => state.feeds.total
 );
 
 // export const { getFeedsData } = feedSlice.selectors; // Получение элементов(заказов)
