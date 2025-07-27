@@ -6,10 +6,14 @@ import {
   useSelector as selectorHook
 } from 'react-redux';
 
-import { ingredientsSliceReducer } from '../slices/ingredientSlice/ingredientSlice'; // Слайс ингредиентаы
+import { ingredientsSliceReducer } from '../slices/ingredientSlice/ingredientSlice'; // Слайс ингредиента
+import { feedSliceReducer } from '../slices/feedSlice/feedSlice'; // Слайс ленты заказов
 
 // Все редьюсеры объединяем в корневой
-const rootReducer = combineReducers({ ingredients: ingredientsSliceReducer });
+const rootReducer = combineReducers({
+  ingredients: ingredientsSliceReducer, // Слайс ингредиента
+  feeds: feedSliceReducer // Слайс ленты заказов
+});
 
 const store = configureStore({
   reducer: rootReducer,

@@ -4,14 +4,12 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 export type TIngredientsSlice = {
   ingredients: TIngredient[];
-  loadingData: boolean;
   error: string | null | undefined;
 };
 
 // начальное состояние хранилища
 export const initialState: TIngredientsSlice = {
   ingredients: [],
-  loadingData: true,
   error: null
 };
 
@@ -28,8 +26,7 @@ const ingredientsSlice = createSlice({
   initialState, // Указывается начальное состояние хранилища, за которое отвечает слайс
   reducers: {}, // Можно сразу описывать редюсеры и экшены, которые они обрабатывают.
   selectors: {
-    getIngredientsData: (state) => state.ingredients, // Селектор для получения элементов
-    getIsLoading: (state) => state.loadingData // Состояние загрузки
+    getIngredientsData: (state) => state.ingredients // Селектор для получения элементов
   },
 
   // Можно добавить синхронные редьюсеры
@@ -37,7 +34,6 @@ const ingredientsSlice = createSlice({
     builder
       // Загрузка началась
       .addCase(getIngredients.pending, (state) => {
-        state.loadingData = true;
         state.error = null;
       })
 
@@ -45,7 +41,6 @@ const ingredientsSlice = createSlice({
       .addCase(
         getIngredients.fulfilled,
         (state, action: PayloadAction<TIngredient[]>) => {
-          state.loadingData = false;
           state.error = null;
           state.ingredients = action.payload;
         }
@@ -53,11 +48,10 @@ const ingredientsSlice = createSlice({
 
       // Ошибка
       .addCase(getIngredients.rejected, (state, action) => {
-        state.loadingData = false;
         state.error = action.error.message;
       });
   }
 });
 
-export const { getIngredientsData, getIsLoading } = ingredientsSlice.selectors; // Получение элементов(ингредиентов) и статуса загрузки
+export const { getIngredientsData } = ingredientsSlice.selectors; // Получение элементов(ингредиентов) и статуса загрузки
 export const ingredientsSliceReducer = ingredientsSlice.reducer; // Редюсер, отвечающий за получение элементов

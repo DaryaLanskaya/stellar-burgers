@@ -4,17 +4,12 @@ import { useInView } from 'react-intersection-observer';
 import { TIngredient, TTabMode } from '@utils-types';
 import { BurgerIngredientsUI } from '../ui/burger-ingredients';
 import { useSelector } from '../../services/store';
-import {
-  getIngredientsData,
-  getIsLoading
-} from '../../slices/ingredientSlice/ingredientSlice';
+import { getIngredientsData } from '../../slices/ingredientSlice/ingredientSlice';
 import { Preloader } from '../ui/preloader/preloader';
 
 export const BurgerIngredients: FC = () => {
   const ingredients = useSelector(getIngredientsData); // Получаем все ингредиенты из стора
-  const isLoading = useSelector(getIsLoading);
 
-  console.log(ingredients);
   /** TODO: взять переменные из стора */
   const buns: TIngredient[] = ingredients.filter(
     (ingredient) => ingredient.type === 'bun'
@@ -57,21 +52,23 @@ export const BurgerIngredients: FC = () => {
       titleSaucesRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  return isLoading ? (
-    <Preloader />
-  ) : (
-    <BurgerIngredientsUI
-      currentTab={currentTab}
-      buns={buns}
-      mains={mains}
-      sauces={sauces}
-      titleBunRef={titleBunRef}
-      titleMainRef={titleMainRef}
-      titleSaucesRef={titleSaucesRef}
-      bunsRef={bunsRef}
-      mainsRef={mainsRef}
-      saucesRef={saucesRef}
-      onTabClick={onTabClick}
-    />
-  );
+  if (!ingredients.length) {
+    return <Preloader />;
+  } else {
+    return (
+      <BurgerIngredientsUI
+        currentTab={currentTab}
+        buns={buns}
+        mains={mains}
+        sauces={sauces}
+        titleBunRef={titleBunRef}
+        titleMainRef={titleMainRef}
+        titleSaucesRef={titleSaucesRef}
+        bunsRef={bunsRef}
+        mainsRef={mainsRef}
+        saucesRef={saucesRef}
+        onTabClick={onTabClick}
+      />
+    );
+  }
 };
