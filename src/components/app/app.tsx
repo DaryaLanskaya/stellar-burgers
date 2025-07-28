@@ -1,5 +1,4 @@
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-
 import {
   ConstructorPage,
   Feed,
@@ -13,15 +12,11 @@ import {
 } from '@pages';
 
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
-
 import '../../index.css';
-
 import { useEffect } from 'react';
-
 import { useDispatch } from '../../../src/services/store';
-import { getIngredients } from '../../slices/ingredientSlice/ingredientSlice';
-
 import { ProtectedRoute } from '../protected-route/protected-route';
+import { getIngredients } from '../../slices/ingredientSlice/ingredientSlice';
 import { getAuth } from '../../slices/authSlice/authSlice';
 
 function App() {
@@ -36,7 +31,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getIngredients()); // getIngredients() — экшен для загрузки данных
-    // dispatch(getAuth());
+    dispatch(getAuth()); // getAuth() — экшен при аутентификации
   }, [dispatch]);
 
   return (
@@ -46,14 +41,8 @@ function App() {
         <Route path='/' element={<ConstructorPage />} />
         <Route path='/feed' element={<Feed />} />
 
-        <Route
-          path='/login'
-          element={
-            <ProtectedRoute>
-              <Login />
-            </ProtectedRoute>
-          }
-        />
+        <Route path='/login' element={<Login />} />
+
         <Route
           path='/register'
           element={
