@@ -54,5 +54,5 @@ const ingredientsSlice = createSlice({
   }
 });
 
-export const { getIngredientsData } = ingredientsSlice.selectors; // Получение элементов(ингредиентов) и статуса загрузки
+export const { getIngredientsData } = ingredientsSlice.selectors; // Получение элементов(ингредиентов)
 export const ingredientsSliceReducer = ingredientsSlice.reducer; // Редюсер, отвечающий за получение элементов

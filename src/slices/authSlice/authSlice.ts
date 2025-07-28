@@ -8,7 +8,12 @@ import {
   TRegisterData,
   updateUserApi
 } from '@api';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice
+} from '@reduxjs/toolkit';
+import { RootState } from 'src/services/store';
 
 // Слайс аутентификации
 export type TAuthSlice = TAuthResponse;
@@ -151,6 +156,22 @@ export const authSlice = createSlice({
   }
 });
 
-// const authSliceSelectors = (state: RootState) => state.auth;
+const authSliceSelectors = (state: RootState) => state.auth; // Cелектор для Redux-стора, который позволяет получить доступ к состоянию (state) модуля аутентификации (auth)
+
+// Создание селекторов для извлечения данных
+
+// Получение информации о статусе аутентификаци
+export const getStatus = createSelector(
+  [authSliceSelectors],
+  (state) => state.success
+);
+
+// Получение данных о пользователе
+export const getUser = createSelector(
+  [authSliceSelectors],
+  (state) => state.user
+);
+
+export const { doLoginUserSuccess } = authSlice.actions; // Создаем и экспортируем готовый экшен
 
 export const authSliceReducer = authSlice.reducer; // Редюсер, отвечающий за получение элементов
