@@ -8,9 +8,11 @@ import {
 
 import { ingredientsSliceReducer } from '../slices/ingredientSlice/ingredientSlice'; // Слайс ингредиента
 import { feedSliceReducer } from '../slices/feedSlice/feedSlice'; // Слайс ленты заказов
+import { authSliceReducer } from '../slices/authSlice/authSlice';
 
 // Все редьюсеры объединяем в корневой
 const rootReducer = combineReducers({
+  // auth: authSliceReducer, // авторизация
   ingredients: ingredientsSliceReducer, // Слайс ингредиента
   feeds: feedSliceReducer // Слайс ленты заказов
 });

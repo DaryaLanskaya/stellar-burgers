@@ -22,6 +22,7 @@ import { useDispatch } from '../../../src/services/store';
 import { getIngredients } from '../../slices/ingredientSlice/ingredientSlice';
 
 import { ProtectedRoute } from '../protected-route/protected-route';
+import { getAuth } from '../../slices/authSlice/authSlice';
 
 function App() {
   const location = useLocation(); // Возвращает текущее местоположение.
@@ -35,6 +36,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getIngredients()); // getIngredients() — экшен для загрузки данных
+    // dispatch(getAuth());
   }, [dispatch]);
 
   return (

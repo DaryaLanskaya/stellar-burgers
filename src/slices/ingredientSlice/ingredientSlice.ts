@@ -2,6 +2,7 @@ import { getIngredientsApi } from '@api'; // API для получения да�
 import { TIngredient } from '@utils-types';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
+// Типизация слайса
 export type TIngredientsSlice = {
   ingredients: TIngredient[];
   error: string | null | undefined;

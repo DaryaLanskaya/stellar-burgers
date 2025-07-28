@@ -149,7 +149,7 @@ export type TRegisterData = {
 };
 
 // Описывает ответ сервера при аутентификации.
-type TAuthResponse = TServerResponse<{
+export type TAuthResponse = TServerResponse<{
   refreshToken: string; // токен для обновления сессии
   accessToken: string; // токен для доступа к API
   user: TUser; // данные пользователя (тип TUser)
@@ -171,7 +171,6 @@ export const registerUserApi = (data: TRegisterData) =>
 export type TLoginData = { email: string; password: string };
 
 // Авторизация пользователя (loginUserApi)
-
 export const loginUserApi = (data: TLoginData) =>
   fetch(`${URL}/auth/login`, {
     method: 'POST',
@@ -220,7 +219,6 @@ export const getUserApi = () =>
 
 //  Обновление данных пользователя (updateUserApi)
 // Обновляет данные пользователя на сервере
-
 export const updateUserApi = (user: Partial<TRegisterData>) =>
   fetchWithRefresh<TUserResponse>(`${URL}/auth/user`, {
     method: 'PATCH',
@@ -234,7 +232,6 @@ export const updateUserApi = (user: Partial<TRegisterData>) =>
 //  Выход из системы (logoutApi)
 // Отправляет refreshToken на сервер для его инвалидации
 // Очистка токенов происходит на стороне клиента
-
 export const logoutApi = () =>
   fetch(`${URL}/auth/logout`, {
     method: 'POST',

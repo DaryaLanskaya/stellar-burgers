@@ -7,7 +7,7 @@ import {
 } from '@reduxjs/toolkit';
 import { RootState } from 'src/services/store';
 
-// Тип для звсех тзаказов
+// Тип для всех заказов
 export type TFeedSlice = {
   feeds: TOrdersData;
   error: string | null | undefined; // Статус ошибки
