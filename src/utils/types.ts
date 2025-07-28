@@ -13,6 +13,7 @@ export type TIngredient = {
   image_mobile: string;
 };
 
+// Тип для конструктора ингредиентов
 export type TConstructorIngredient = TIngredient & { id: string };
 
 // Тип для отдельного заказа
