@@ -41,12 +41,19 @@ function App() {
         <Route path='/' element={<ConstructorPage />} />
         <Route path='/feed' element={<Feed />} />
 
-        <Route path='/login' element={<Login />} />
+        <Route
+          path='/login'
+          element={
+            <ProtectedRoute onlyUnAuth>
+              <Login />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path='/register'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <Register />
             </ProtectedRoute>
           }
@@ -54,7 +61,7 @@ function App() {
         <Route
           path='/forgot-password'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <ForgotPassword />
             </ProtectedRoute>
           }
@@ -62,7 +69,7 @@ function App() {
         <Route
           path='/reset-password'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <ResetPassword />
             </ProtectedRoute>
           }
@@ -78,7 +85,7 @@ function App() {
         <Route
           path='/profile/orders'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute onlyUnAuth>
               <ProfileOrders />
             </ProtectedRoute>
           }
@@ -86,6 +93,7 @@ function App() {
         <Route path='*' element={<NotFound404 />} />
 
         <Route path='/feed/:number' element={<OrderInfo />} />
+
         <Route path='/ingredients/:id' element={<IngredientDetails />} />
 
         <Route
