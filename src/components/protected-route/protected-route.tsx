@@ -19,11 +19,11 @@ export const ProtectedRoute = ({
   const location = useLocation();
   const isDataLoading = useSelector(getAuthLoading);
 
-  console.log(isDataLoading);
   // пока идёт чекаут пользователя, показываем прелоадер
-  // if (isDataLoading) {
-  //   return <Preloader />;
-  // }
+  if (!isDataLoading) {
+    return <Preloader />;
+  }
+
   // Если пользователь не авторизован или токен пользователя не обнаружен - то перенаправь на /login
   if (!onlyUnAuth && !isAuthenticated) {
     return <Navigate replace to={redirectTo} state={{ from: location }} />;

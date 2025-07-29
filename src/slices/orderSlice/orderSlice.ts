@@ -88,7 +88,7 @@ export const orderSlice = createSlice({
   }
 });
 
-// Код отвечает за получение списка заказов
+// Код отвечает за получение списка для истории
 export const getOrderList = createSelector(
   [orderSliceSelectors],
   (state) => state.orders
