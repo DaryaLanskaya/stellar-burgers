@@ -23,11 +23,11 @@ export const ProtectedRoute = ({
   }
 
   // Если маршрут НЕ требует авторизации, но пользователь авторизован
-  // if (!onlyUnAuth && isAuthenticated) {
-  //   const from = location.state?.from || { pathname: '/' };
+  if (onlyUnAuth && isAuthenticated) {
+    const from = location.state?.from || { pathname: '/' };
 
-  //   return <Navigate replace to={from} />; // Перенаправляем на главную
-  // }
+    return <Navigate replace to={from} />; // Перенаправляем на главную
+  }
 
   // Если проверки пройдены — рендерим children
   return <>{children}</>;
