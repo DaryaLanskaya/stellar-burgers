@@ -1,16 +1,17 @@
-import { getFeedsApi } from '@api'; // API для получения данных
+import { getFeedsApi, getOrderByNumberApi, TOrderResponse } from '@api'; // API для получения данных
 import { TOrder, TOrdersData } from '@utils-types';
 import {
   createSlice,
   createAsyncThunk,
   createSelector
 } from '@reduxjs/toolkit';
-import { RootState } from 'src/services/store';
+import { RootState } from '../../services/store';
 
 // Тип для всех заказов
 export type TFeedSlice = {
   feeds: TOrdersData;
   error: string | null | undefined; // Статус ошибки
+  orderByNumber: TOrderResponse | null; // Номер заказа
 };
 
 // Начальное состояние хранилища
@@ -20,11 +21,18 @@ export const initialState: TFeedSlice = {
     total: 0,
     totalToday: 0
   }, // Список заказов
-  error: null // Статус ошибки
+  error: null, // Статус ошибки
+  orderByNumber: null // Номер заказа
 };
 
 // Получаем данные о заказах
 export const getFeeds = createAsyncThunk('feeds/getAll', getFeedsApi);
+
+// Получаем заказ по номеру
+export const getOrderByNumber = createAsyncThunk(
+  'feeds/getOrderById',
+  async (number: number) => getOrderByNumberApi(number)
+);
 
 // Создаём слайс
 const feedSlice = createSlice({
@@ -54,6 +62,19 @@ const feedSlice = createSlice({
       // Ошибка
       .addCase(getFeeds.rejected, (state, action) => {
         state.error = action.error.message;
+      })
+
+      .addCase(getOrderByNumber.pending, (state) => {
+        state.error = null;
+      })
+
+      .addCase(getOrderByNumber.fulfilled, (state, action) => {
+        state.error = null;
+        state.orderByNumber = action.payload;
+      })
+
+      .addCase(getOrderByNumber.rejected, (state, action) => {
+        state.error = action.error.message;
       });
   }
 });
@@ -79,5 +100,16 @@ export const getTotalOrders = createSelector(
   (state) => state.feeds.total
 );
 
-// export const { getFeedsData } = feedSlice.selectors; // Получение элементов(заказов)
+// Получение всех заказа по id
+export const getOrderByNumberSelector = createSelector(
+  [feedsSliceSelectors],
+  (state) => state.orderByNumber?.orders[0]
+);
+
+// Проверка статуса текущего заказа
+export const isSearchSuccessSelector = createSelector(
+  [feedsSliceSelectors],
+  (state) => state.orderByNumber?.success
+);
+
 export const feedSliceReducer = feedSlice.reducer; // Редюсер, отвечающий за получение элементов

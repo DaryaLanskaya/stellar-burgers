@@ -131,7 +131,7 @@ export const orderBurgerApi = (data: string[]) =>
 // Если success: true - возвращает данные заказа
 // Если success: false - отклоняет промис с данными ошибки
 
-type TOrderResponse = TServerResponse<{
+export type TOrderResponse = TServerResponse<{
   orders: TOrder[]; // Массив заказов
 }>;
 
