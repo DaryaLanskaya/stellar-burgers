@@ -22,7 +22,6 @@ export const Login: FC = () => {
     dispatch(loginUser({ email, password }))
       .unwrap()
       .then((data) => {
-        console.log('Login response:', data);
         try {
           localStorage.setItem('refreshToken', data.refreshToken);
           setCookie('accessToken', data.accessToken, { expires: 20 * 60 }); // 20 минут

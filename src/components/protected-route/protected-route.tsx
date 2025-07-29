@@ -1,7 +1,8 @@
 import { FC, ReactNode } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from '../../services/store';
-import { getStatus } from '../../slices/authSlice/authSlice';
+import { getAuthLoading, getStatus } from '../../slices/authSlice/authSlice';
+import { Preloader } from '../ui/preloader';
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -16,7 +17,13 @@ export const ProtectedRoute = ({
 }: ProtectedRouteProps) => {
   const isAuthenticated = useSelector(getStatus); // Проверка токена
   const location = useLocation();
-  console.log(isAuthenticated);
+  const isDataLoading = useSelector(getAuthLoading);
+
+  console.log(isDataLoading);
+  // пока идёт чекаут пользователя, показываем прелоадер
+  // if (isDataLoading) {
+  //   return <Preloader />;
+  // }
   // Если пользователь не авторизован или токен пользователя не обнаружен - то перенаправь на /login
   if (!onlyUnAuth && !isAuthenticated) {
     return <Navigate replace to={redirectTo} state={{ from: location }} />;

@@ -16,7 +16,9 @@ import {
 import { RootState } from 'src/services/store';
 
 // Слайс аутентификации
-export type TAuthSlice = TAuthResponse;
+export type TAuthSlice = TAuthResponse & {
+  loading: boolean;
+};
 
 // Начальное состояние хранилища
 export const initialState: TAuthSlice = {
@@ -26,7 +28,8 @@ export const initialState: TAuthSlice = {
     name: '' // имя
   },
   accessToken: '', // токен для доступа к API
-  refreshToken: '' // токен для обновления сессии
+  refreshToken: '', // токен для обновления сессии
+  loading: false
 };
 
 //  Обновление данных пользователя (updateUserApi)
@@ -76,81 +79,96 @@ export const authSlice = createSlice({
     builder
       // Загрузка началась
       .addCase(getAuth.pending, (state) => {
+        state.loading = false;
         state.success = false;
       })
 
       // Успешная загрузка
       .addCase(getAuth.fulfilled, (state, action) => {
+        state.loading = true;
         state.success = action.payload.success;
         state.user = action.payload.user;
       })
 
       // Ошибка
       .addCase(getAuth.rejected, (state, action) => {
+        state.loading = true;
         state.success = false;
       })
 
       // Загрузка началась
       .addCase(loginUser.pending, (state) => {
+        state.loading = false;
         state.success = false;
       })
 
       // Успешная загрузка
       .addCase(loginUser.fulfilled, (state, action) => {
+        state.loading = true;
         state.success = action.payload.success;
         state.user = action.payload.user;
       })
 
       // Ошибка
       .addCase(loginUser.rejected, (state, action) => {
+        state.loading = true;
         state.success = false;
       })
 
       // Загрузка началась
       .addCase(registerUser.pending, (state) => {
+        state.loading = false;
         state.success = false;
       })
 
       // Успешная загрузка
       .addCase(registerUser.fulfilled, (state, action) => {
+        state.loading = true;
         state.success = action.payload.success;
         state.user = action.payload.user;
       })
 
       // Ошибка
       .addCase(registerUser.rejected, (state, action) => {
+        state.loading = true;
         state.success = false;
       })
 
       // Загрузка началась
       .addCase(updateUserData.pending, (state) => {
+        state.loading = false;
         state.success = false;
       })
 
       // Успешная загрузка
       .addCase(updateUserData.fulfilled, (state, action) => {
+        state.loading = true;
         state.success = action.payload.success;
         state.user = action.payload.user;
       })
 
       // Ошибка
       .addCase(updateUserData.rejected, (state, action) => {
+        state.loading = true;
         state.success = false;
       })
 
       // Загрузка началась
       .addCase(userLogout.pending, (state) => {
+        state.loading = false;
         state.success = false;
       })
 
       // Успешная загрузка
       .addCase(userLogout.fulfilled, (state, action) => {
+        state.loading = true;
         state.success = false;
         state.user = initialState.user;
       })
 
       // Ошибка
       .addCase(userLogout.rejected, (state, action) => {
+        state.loading = true;
         state.success = false;
       });
   }
@@ -160,6 +178,11 @@ const authSliceSelectors = (state: RootState) => state.auth; // Cелектор 
 
 // Создание селекторов для извлечения данных
 
+// Статус авторизации
+export const getAuthLoading = createSelector(
+  [authSliceSelectors],
+  (state) => state.loading
+);
 // Получение информации о статусе аутентификаци
 export const getStatus = createSelector(
   [authSliceSelectors],

@@ -26,6 +26,18 @@ export const initialState: TOrderSlice = {
 // Обращение к глобальному хранилищу
 const orderSliceSelectors = (state: RootState) => state.orders;
 
+// Получение заказов пользователя
+export const getOrders = createAsyncThunk(
+  'order/getOrders',
+  async () => await getOrdersApi()
+);
+
+// Создание нового заказа
+export const newOrder = createAsyncThunk(
+  'order/newOrder',
+  async (data: string[]) => await orderBurgerApi(data)
+);
+
 // Cоздание слайса
 export const orderSlice = createSlice({
   name: 'order',
@@ -76,16 +88,10 @@ export const orderSlice = createSlice({
   }
 });
 
-// Получение заказов пользователя
-export const getOrders = createAsyncThunk(
-  'order/getOrders',
-  async () => await getOrdersApi()
-);
-
-// Создание нового заказа
-export const newOrder = createAsyncThunk(
-  'order/newOrder',
-  async (data: string[]) => await orderBurgerApi(data)
+// Код отвечает за получение списка заказов
+export const getOrderList = createSelector(
+  [orderSliceSelectors],
+  (state) => state.orders
 );
 
 // Код,  который получает статус запроса заказа из хранилища.
