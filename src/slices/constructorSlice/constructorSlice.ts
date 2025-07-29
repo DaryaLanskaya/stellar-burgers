@@ -158,4 +158,6 @@ export const {
 } = burgerConstructorSlice.actions;
 
 // Экспорт редьюсера по умолчанию для подключения в хранилище
-export default burgerConstructorSlice.reducer;
+// export default burgerConstructorSlice.reducer;
+
+export const burgerConstructorSliceReducer = burgerConstructorSlice.reducer;
