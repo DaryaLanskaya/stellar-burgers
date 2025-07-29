@@ -23,17 +23,8 @@ export const initialState: TOrderSlice = {
   loading: false
 };
 
-// Получение заказов пользователя
-export const getOrders = createAsyncThunk(
-  'order/getOrders',
-  async () => await getOrdersApi()
-);
-
-// Создание нового заказа
-export const newOrder = createAsyncThunk(
-  'order/newOrder',
-  async (data: string[]) => await orderBurgerApi(data)
-);
+// Обращение к глобальному хранилищу
+const orderSliceSelectors = (state: RootState) => state.orders;
 
 // Cоздание слайса
 export const orderSlice = createSlice({
@@ -84,6 +75,30 @@ export const orderSlice = createSlice({
       });
   }
 });
+
+// Получение заказов пользователя
+export const getOrders = createAsyncThunk(
+  'order/getOrders',
+  async () => await getOrdersApi()
+);
+
+// Создание нового заказа
+export const newOrder = createAsyncThunk(
+  'order/newOrder',
+  async (data: string[]) => await orderBurgerApi(data)
+);
+
+// Код,  который получает статус запроса заказа из хранилища.
+export const getOrderStatusRequest = createSelector(
+  [orderSliceSelectors],
+  (state) => state.orderRequestData
+);
+
+// Получение последнего заказа
+export const getLastOrder = createSelector(
+  [orderSliceSelectors],
+  (state) => state.lastOrder
+);
 
 export const { setLastOrder } = orderSlice.actions; // Создаем и экспортируем готовый экшен
 

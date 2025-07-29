@@ -1,6 +1,24 @@
 import { FC, useMemo } from 'react';
 import { TConstructorIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from '../../services/store';
+import { getFeeds } from '../../slices/feedSlice/feedSlice';
+
+import {
+  selectBun,
+  selectIngredients,
+  resetConstructor
+} from '../../slices/constructorSlice/constructorSlice';
+
+import {
+  getOrderStatusRequest,
+  setLastOrder,
+  getLastOrder,
+  newOrder
+} from '../../slices/orderSlice/orderSlice';
+
+import { getStatus } from '../../slices/authSlice/authSlice';
 
 export const BurgerConstructor: FC = () => {
   /** TODO: взять переменные constructorItems, orderRequest и orderModalData из стора */
