@@ -14,7 +14,8 @@ import { authSliceReducer } from '../slices/authSlice/authSlice'; // Слайс 
 const rootReducer = combineReducers({
   auth: authSliceReducer, // Слайс аутентификации
   ingredients: ingredientsSliceReducer, // Слайс ингредиента
-  feeds: feedSliceReducer // Слайс ленты заказов
+  feeds: feedSliceReducer, // Слайс ленты заказов
+  orders: 
 });
 
 const store = configureStore({

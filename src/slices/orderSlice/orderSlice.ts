@@ -24,14 +24,14 @@ export const initialState: TOrderSlice = {
 };
 
 // Получение заказов пользователя
-export const getUserOrders = createAsyncThunk(
-  'user/getUserOrders',
+export const getOrders = createAsyncThunk(
+  'order/getOrders',
   async () => await getOrdersApi()
 );
 
 // Создание нового заказа
-export const newUserOrder = createAsyncThunk(
-  'user/newUserOrder',
+export const newOrder = createAsyncThunk(
+  'order/newOrder',
   async (data: string[]) => await orderBurgerApi(data)
 );
 
@@ -48,29 +48,29 @@ export const orderSlice = createSlice({
   extraReducers(builder) {
     builder
       // Начало загрузки
-      .addCase(getUserOrders.pending, (state) => {
+      .addCase(getOrders.pending, (state) => {
         state.loading = true;
       })
 
       // Сохранение полученных заказов
-      .addCase(getUserOrders.fulfilled, (state, action) => {
+      .addCase(getOrders.fulfilled, (state, action) => {
         state.loading = false;
         state.orders = action.payload;
       })
 
       // Ошибка загрузки
-      .addCase(getUserOrders.rejected, (state, action) => {
+      .addCase(getOrders.rejected, (state, action) => {
         state.loading = false;
       })
 
       // Начало загрузки
-      .addCase(newUserOrder.pending, (state) => {
+      .addCase(newOrder.pending, (state) => {
         state.loading = true;
         state.orderRequestData = true; // Начало создания заказа
       })
 
       // Сохранение полученных заказов
-      .addCase(newUserOrder.fulfilled, (state, action) => {
+      .addCase(newOrder.fulfilled, (state, action) => {
         state.loading = false;
         state.orders.push(action.payload.order); // Добавление нового заказа
         state.lastOrder = action.payload.order; // Сохранение последнего заказа
@@ -78,12 +78,13 @@ export const orderSlice = createSlice({
       })
 
       // Ошибка загрузки
-      .addCase(newUserOrder.rejected, (state, action) => {
+      .addCase(newOrder.rejected, (state, action) => {
         state.loading = false;
         state.orderRequestData = false;
       });
   }
 });
 
-export const { setLastOrder } = orderSlice.actions;
-export const userSliceReducer = orderSlice.reducer;
+export const { setLastOrder } = orderSlice.actions; // Создаем и экспортируем готовый экшен
+
+export const orderSliceReducer = orderSlice.reducer; // Редюсер, отвечающий за получение элементов
