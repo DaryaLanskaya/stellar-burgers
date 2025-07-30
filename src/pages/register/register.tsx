@@ -21,7 +21,7 @@ export const Register: FC = () => {
       name: userName,
       password: password
     };
-    dispatch(registerUser(userData)).then(() => navigate('/profile')); // После успешной регистрации происходит переход на /profile
+    dispatch(registerUser(userData));
   };
 
   return (

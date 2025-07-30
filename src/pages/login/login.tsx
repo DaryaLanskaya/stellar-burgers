@@ -27,7 +27,6 @@ export const Login: FC = () => {
         }
       })
       .then(() => dispatch(doLoginUserSuccess(true)))
-      .then(() => navigate('/'))
       .catch((error) => {
         console.error(error.message);
       });
