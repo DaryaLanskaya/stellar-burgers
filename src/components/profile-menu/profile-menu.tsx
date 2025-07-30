@@ -15,6 +15,9 @@ export const ProfileMenu: FC = () => {
       .then(() => {
         deleteCookie('accessToken');
         localStorage.removeItem('refreshToken');
+      })
+      .catch((error) => {
+        console.error(error.message);
       });
   };
 

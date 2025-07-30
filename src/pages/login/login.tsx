@@ -14,9 +14,6 @@ export const Login: FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // const handleSubmit = (e: SyntheticEvent) => {
-  //   e.preventDefault();
-  // };
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(loginUser({ email, password }))
@@ -30,12 +27,15 @@ export const Login: FC = () => {
         }
       })
       .then(() => dispatch(doLoginUserSuccess(true)))
-      .then(() => navigate('/'));
+      .then(() => navigate('/'))
+      .catch((error) => {
+        console.error(error.message);
+      });
   };
 
   return (
     <LoginUI
-      errorText=''
+      errorText={''}
       email={email}
       setEmail={setEmail}
       password={password}

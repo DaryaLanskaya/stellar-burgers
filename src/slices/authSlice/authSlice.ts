@@ -11,7 +11,8 @@ import {
 import {
   createAsyncThunk,
   createSelector,
-  createSlice
+  createSlice,
+  SerializedError
 } from '@reduxjs/toolkit';
 import { RootState } from 'src/services/store';
 
