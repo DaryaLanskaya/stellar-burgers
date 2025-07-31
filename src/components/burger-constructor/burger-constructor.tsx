@@ -50,7 +50,8 @@ export const BurgerConstructor: FC = () => {
       constructorItems.bun._id,
       ...constructorItems.ingredients.map(
         (item: TConstructorIngredient) => item._id
-      )
+      ),
+      constructorItems.bun._id
     ];
 
     dispatch(newOrder(ingredientsId)); // Отправка заказа
