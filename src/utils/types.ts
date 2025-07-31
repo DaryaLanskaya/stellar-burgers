@@ -1,3 +1,4 @@
+// Тип для отдельного элемента
 export type TIngredient = {
   _id: string;
   name: string;
@@ -12,10 +13,10 @@ export type TIngredient = {
   image_mobile: string;
 };
 
-export type TConstructorIngredient = TIngredient & {
-  id: string;
-};
+// Тип для конструктора ингредиентов
+export type TConstructorIngredient = TIngredient & { id: string };
 
+// Тип для отдельного заказа
 export type TOrder = {
   _id: string;
   status: string;
@@ -26,15 +27,13 @@ export type TOrder = {
   ingredients: string[];
 };
 
+// Тип для всех заказов
 export type TOrdersData = {
-  orders: TOrder[];
-  total: number;
-  totalToday: number;
+  orders: TOrder[]; // массив заказов
+  total: number; // всего заказов
+  totalToday: number; // заказов за сегодня
 };
 
-export type TUser = {
-  email: string;
-  name: string;
-};
+export type TUser = { email: string; name: string };
 
 export type TTabMode = 'bun' | 'sauce' | 'main';
