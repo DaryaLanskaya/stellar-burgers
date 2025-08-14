@@ -8,7 +8,7 @@ export type TIngredientsSlice = {
   error: string | null | undefined;
 };
 
-// начальное состояние хранилища
+// Начальное состояние хранилища
 export const initialState: TIngredientsSlice = {
   ingredients: [],
   error: null
