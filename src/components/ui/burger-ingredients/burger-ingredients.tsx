@@ -54,6 +54,7 @@ export const BurgerIngredientsUI: FC<BurgerIngredientsUIProps> = memo(
             titleRef={titleMainRef}
             ingredients={mains}
             ref={mainsRef}
+            data-testid='mains'
           />
           <IngredientsCategory
             title='Соусы'
