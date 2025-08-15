@@ -1,3 +1,5 @@
+import { selectors } from './../constants/constants';
+
 // Тестирование добавления ингредиента из списка в конструктор.
 describe('Проверяем добавление ингредиента через кнопку "Добавить"', () => {
   beforeEach(() => {
@@ -17,9 +19,9 @@ describe('Проверяем добавление ингредиента чер�
 
     cy.visit('http://localhost:4000/');
     cy.wait(['@getIngredients', '@getUser']);
-    cy.get('[data-cy="main"]').as('mainIngredients'); // Компонент отвечающий за начинку
-    cy.get('[data-cy="bun"]').as('bunIngredients'); // Компонент отвечающий за булку
-    cy.get('[data-cy="sauce"]').as('sauceIngredients'); // Компонент отвечающий за соус
+    cy.get(selectors.ingredientMain).as('mainIngredients'); // Компонент отвечающий за начинку
+    cy.get(selectors.ingredientBun).as('bunIngredients'); // Компонент отвечающий за булку
+    cy.get(selectors.ingredientSauce).as('sauceIngredients'); // Компонент отвечающий за соус
   });
 
   // Тест для добавления начинки в конструктор
