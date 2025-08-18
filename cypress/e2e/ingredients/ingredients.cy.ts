@@ -1,8 +1,10 @@
 // Настроен перехват запроса на эндпоинт 'api/ingredients’, в ответе на который возвращаются созданные ранее моковые данные.
 
+import { selectors } from '../constants/constants';
+
 // Тест для добавления ингредиента из списка в конструктор.
 
-describe('Конструктор бургеров', () => {
+describe('Тест для добавления ингредиента из списка в конструктор', () => {
   beforeEach(() => {
     // 1. Перехватываем запрос ингредиентов
     cy.intercept('GET', 'https://norma.nomoreparties.space/api/ingredients', {
@@ -27,6 +29,6 @@ describe('Конструктор бургеров', () => {
     cy.wait('@getUser');
 
     // Проверяем отображение
-    cy.get('[data-testid="ingredient-item"]').should('have.length', 3);
+    cy.get(selectors.ingredientItem).should('have.length', 3);
   });
 });
