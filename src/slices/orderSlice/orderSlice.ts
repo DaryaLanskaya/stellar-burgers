@@ -1,4 +1,4 @@
-import { getOrdersApi, orderBurgerApi } from '@api';
+import { getOrdersApi, orderBurgerApi } from '../../utils/burger-api'; // API для получения данных
 import {
   createAsyncThunk,
   createSelector,

@@ -13,7 +13,7 @@ import { orderSliceReducer } from '../slices/orderSlice/orderSlice'; // Слай
 import { burgerConstructorSliceReducer } from '../slices/constructorSlice/constructorSlice'; // Слайс конструктора
 
 // Все редьюсеры объединяем в корневой
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   auth: authSliceReducer, // Слайс аутентификации
   ingredients: ingredientsSliceReducer, // Слайс ингредиента
   feeds: feedSliceReducer, // Слайс ленты заказов

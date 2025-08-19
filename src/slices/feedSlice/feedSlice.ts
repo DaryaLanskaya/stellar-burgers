@@ -1,4 +1,8 @@
-import { getFeedsApi, getOrderByNumberApi, TOrderResponse } from '@api'; // API для получения данных
+import {
+  getFeedsApi,
+  getOrderByNumberApi,
+  TOrderResponse
+} from '../../utils/burger-api'; // API для получения данных
 import { TOrder, TOrdersData } from '@utils-types';
 import {
   createSlice,
