@@ -19,7 +19,7 @@ type BurgerConstructorState = {
 };
 
 // Начальное состояние конструктора бургера
-const initialState: BurgerConstructorState = {
+export const initialState: BurgerConstructorState = {
   ingredients: [], // Пустой массив ингредиентов
   bun: null // Булка не выбрана
 };

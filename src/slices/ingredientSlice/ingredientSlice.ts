@@ -10,6 +10,7 @@ export type TIngredientsSlice = {
 
 // Начальное состояние хранилища
 export const initialState: TIngredientsSlice = {
+  bun: null,
   ingredients: [],
   error: null
 };
