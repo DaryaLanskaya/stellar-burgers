@@ -6,13 +6,14 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 export type TIngredientsSlice = {
   ingredients: TIngredient[];
   error: string | null | undefined;
+  loading: boolean;
 };
 
 // Начальное состояние хранилища
 export const initialState: TIngredientsSlice = {
-  bun: null,
   ingredients: [],
-  error: null
+  error: null,
+  loading: false
 };
 
 // Получаем данные об ингредиентах
@@ -23,7 +24,7 @@ export const getIngredients = createAsyncThunk(
 );
 
 // Создаём слайс
-const ingredientsSlice = createSlice({
+export const ingredientsSlice = createSlice({
   name: 'ingredients', // Указывается уникальное название для слайса.
   initialState, // Указывается начальное состояние хранилища, за которое отвечает слайс
   reducers: {}, // Можно сразу описывать редюсеры и экшены, которые они обрабатывают.

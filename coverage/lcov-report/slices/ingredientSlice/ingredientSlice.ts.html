@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.52% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>54/59</span>
+                <span class='fraction'>60/60</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">91.52% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>54/59</span>
+                <span class='fraction'>60/60</span>
             </div>
         
             
@@ -122,7 +122,8 @@
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -160,21 +161,22 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -189,13 +191,14 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 export type TIngredientsSlice = {
   ingredients: TIngredient[];
   error: string | null | undefined;
+  loading: boolean;
 };
 &nbsp;
 // Начальное состояние хранилища
 export const initialState: TIngredientsSlice = {
-  bun: null,
   ingredients: [],
-  error: null
+  error: null,
+  loading: false
 };
 &nbsp;
 // Получаем данные об ингредиентах
@@ -206,7 +209,7 @@ export const getIngredients = createAsyncThunk(
 );
 &nbsp;
 // Создаём слайс
-const ingredientsSlice = createSlice({
+export const ingredientsSlice = createSlice({
   name: 'ingredients', // Указывается уникальное название для слайса.
   initialState, // Указывается начальное состояние хранилища, за которое отвечает слайс
   reducers: {}, // Можно сразу описывать редюсеры и экшены, которые они обрабатывают.
@@ -219,21 +222,21 @@ const ingredientsSlice = createSlice({
     builder
       // Загрузка началась
       .addCase(getIngredients.pending, (state) =&gt; {
-<span class="cstat-no" title="statement not covered" >        state.error = null;</span>
+        state.error = null;
       })
 &nbsp;
       // Успешная загрузка
       .addCase(
         getIngredients.fulfilled,
         (state, action: PayloadAction&lt;TIngredient[]&gt;) =&gt; {
-<span class="cstat-no" title="statement not covered" >          state.error = null;</span>
-<span class="cstat-no" title="statement not covered" >          state.ingredients = action.payload;</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
+          state.error = null;
+          state.ingredients = action.payload;
+        }
       )
 &nbsp;
       // Ошибка
       .addCase(getIngredients.rejected, (state, action) =&gt; {
-<span class="cstat-no" title="statement not covered" >        state.error = action.error.message;</span>
+        state.error = action.error.message;
       });
   }
 });
@@ -247,7 +250,7 @@ export const ingredientsSliceReducer = ingredientsSlice.reducer; // Редюсе
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-19T12:15:33.477Z
+                at 2025-08-19T13:04:36.570Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
