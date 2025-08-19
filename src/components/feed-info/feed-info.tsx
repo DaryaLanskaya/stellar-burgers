@@ -8,7 +8,7 @@ import {
   getTotalOrders
 } from '../../slices/feedSlice/feedSlice';
 
-const getOrders = (orders: TOrder[], status: string): number[] =>
+export const getOrders = (orders: TOrder[], status: string): number[] =>
   orders
     .filter((item) => item.status === status)
     .map((item) => item.number)

@@ -3,9 +3,7 @@ import {
   addIngredient,
   initialState,
   removeIngredient,
-  moveIngredientUp,
-  moveIngredientDown,
-  resetConstructor
+  moveIngredientUp
 } from '../../slices/constructorSlice/constructorSlice';
 
 describe('Тест на проверку экшенов в редьюсере constructor', () => {
@@ -134,7 +132,7 @@ describe('Тест на проверку экшенов в редьюсере co
     // 4. Проверяем новый порядок: [moveTestIngredientSecond, moveTestIngredientFirst]
     expect(stateAfterMove.ingredients).toHaveLength(2);
 
-    // Проверяем содержимое БЕЗ id (так как id генерируются автоматически)
+    // Проверяем содержимое без id (так как id генерируются автоматически)
     const { id: id1, ...firstIngredientWithoutId } =
       stateAfterMove.ingredients[0];
     expect(firstIngredientWithoutId).toEqual(moveTestIngredientSecond);
