@@ -1,5 +1,3 @@
-// tests/feedSlice.test.ts
-
 import {
   getFeeds,
   getOrderByNumber,
