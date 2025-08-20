@@ -27,7 +27,7 @@ const mockAuthResponse: TAuthResponse = {
 };
 
 const mockErrorResponse = {
-  message: 'Error occurred' // Сообщение об ошибке
+  message: 'Возникла ошибка' // Сообщение об ошибке
 };
 
 // Основной блок тестов для редьюсера authSlice
