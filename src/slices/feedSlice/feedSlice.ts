@@ -3,12 +3,15 @@ import {
   getOrderByNumberApi,
   TOrderResponse
 } from '../../utils/burger-api'; // API для получения данных
-import { TOrder, TOrdersData } from '@utils-types';
+
+import { TOrdersData } from '@utils-types';
+
 import {
   createSlice,
   createAsyncThunk,
   createSelector
 } from '@reduxjs/toolkit';
+
 import { RootState } from '../../services/store';
 
 // Тип для всех заказов

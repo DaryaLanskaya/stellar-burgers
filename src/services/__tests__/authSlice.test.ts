@@ -1,8 +1,8 @@
-// authSlice.test.ts
 import {
   authSliceReducer,
   initialState
 } from '../../slices/authSlice/authSlice';
+
 import {
   getAuth,
   loginUser,
@@ -10,6 +10,7 @@ import {
   updateUserData,
   userLogout
 } from '../../slices/authSlice/authSlice';
+
 import { TAuthResponse } from '../../utils/burger-api';
 
 // Моковые данные для тестов - имитируют реальные ответы от API
@@ -241,9 +242,9 @@ describe('authSlice reducer', () => {
     // Состояние с авторизованным пользователем для тестов выхода
     const loggedInState = {
       ...initialState,
-      success: true, // Пользователь авторизован
-      user: mockUserData, // Есть данные пользователя
-      accessToken: '', // Есть токены
+      success: true,
+      user: mockUserData,
+      accessToken: '',
       refreshToken: ''
     };
 
