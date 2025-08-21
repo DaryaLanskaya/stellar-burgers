@@ -53,7 +53,7 @@ describe('Тестирование работы оформления заказ�
     }).as('createOrder');
 
     // 5. Устанавливаем токен в localStorage
-    window.localStorage.setItem('accessToken', 'Bearer test-access-token');
+    cy.setCookie('accessToken', 'test-access-token');
     window.localStorage.setItem('refreshToken', 'test-refresh-token');
 
     cy.visit('http://localhost:4000/login');

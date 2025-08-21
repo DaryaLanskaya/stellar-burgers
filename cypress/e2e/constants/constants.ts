@@ -1,5 +1,5 @@
 export const selectors = {
-  ingredientItem: '[ingredient-item"]',
+  ingredientItem: '[data-testid="ingredient-item"]',
   ingredientMain: '[data-cy="main"]',
   ingredientBun: '[data-cy="bun"]',
   ingredientSauce: '[data-cy="sauce"]',
