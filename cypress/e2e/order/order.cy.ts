@@ -56,7 +56,7 @@ describe('Тестирование работы оформления заказ�
     cy.setCookie('accessToken', 'test-access-token');
     window.localStorage.setItem('refreshToken', 'test-refresh-token');
 
-    cy.visit('http://localhost:4000/login');
+    cy.visit('/login');
     cy.wait(['@getIngredients', '@getUser']);
 
     cy.get(selectors.ingredientMain).as('mainIngredients'); // Компонент отвечающий за начинку

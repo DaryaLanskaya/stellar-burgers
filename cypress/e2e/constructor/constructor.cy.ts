@@ -17,7 +17,7 @@ describe('Проверяем добавление ингредиента чер�
       }
     }).as('getUser');
 
-    cy.visit('http://localhost:4000/');
+    cy.visit('/');
     cy.wait(['@getIngredients', '@getUser']);
     cy.get(selectors.ingredientMain).as('mainIngredients'); // Компонент отвечающий за начинку
     cy.get(selectors.ingredientBun).as('bunIngredients'); // Компонент отвечающий за булку

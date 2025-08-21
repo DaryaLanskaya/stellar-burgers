@@ -17,7 +17,7 @@ describe('Тестирование работы модальных окон', ()
       }
     }).as('getUser');
 
-    cy.visit('http://localhost:4000/');
+    cy.visit('/');
     cy.wait(['@getIngredients', '@getUser']);
   });
 
