@@ -7,6 +7,8 @@ export const selectors = {
   modalOverlay: '[data-cy="modal-overlay"]',
   modalClose: '[data-cy="modal-close"]',
   buttonOrder: '[data-testid="order-button"]',
-  burgerConstructor: '[data-testid="burger-constructor"]',
-  ingredientNumber: '[data-testid="order-number"]'
+  burgerConstructor: '[data-cy="burger-constructor"]',
+  ingredientNumber: '[data-testid="order-number"]',
+  ingredientBunTop: '[data-cy="constructor-bun-top"]',
+  ingredientBunBottom: '[data-cy="constructor-bun-bottom"]'
 };

@@ -1,7 +1,6 @@
-import { selectors } from './../constants/constants';
+import { selectors } from '../constants/constants';
 
-// Тестирование добавления ингредиента из списка в конструктор.
-describe('Проверяем добавление ингредиента через кнопку "Добавить"', () => {
+describe('Проверяем добавление ингредиента в конструктор', () => {
   beforeEach(() => {
     // 1. Перехватываем запрос ингредиентов
     cy.intercept('GET', '/api/ingredients', {
@@ -19,34 +18,46 @@ describe('Проверяем добавление ингредиента чер�
 
     cy.visit('/');
     cy.wait(['@getIngredients', '@getUser']);
-    cy.get(selectors.ingredientMain).as('mainIngredients'); // Компонент отвечающий за начинку
-    cy.get(selectors.ingredientBun).as('bunIngredients'); // Компонент отвечающий за булку
-    cy.get(selectors.ingredientSauce).as('sauceIngredients'); // Компонент отвечающий за соус
   });
 
-  // Тест для добавления начинки в конструктор
-  it('Добавление начинки в конструктор', () => {
-    cy.get('@mainIngredients').contains('Добавить').click();
-    cy.contains(
-      'p.text_type_main-default',
-      'Биокотлета из марсианской Магнолии'
-    ).should('exist');
-  });
-
-  // Тест для добавления булки в конструктор
   it('Добавление булки в конструктор', () => {
-    cy.get('@bunIngredients').contains('Добавить').click();
-    cy.contains('p.text_type_main-default', 'Краторная булка N-200i').should(
-      'exist'
-    );
+    // Кликаем по первой кнопке "Добавить" в секции булок (в списке ингредиентов)
+    cy.get(selectors.ingredientBun).first().find('button').click();
+
+    // Проверяем, что булка появилась в конструкторе (в верхней части)
+    cy.get(selectors.burgerConstructor)
+      .contains('.constructor-element__text', 'Краторная булка N-200i (верх)')
+      .should('exist');
+
+    // А также проверяем нижнюю часть булки
+    cy.get(selectors.burgerConstructor)
+      .contains('.constructor-element__text', 'Краторная булка N-200i (низ)')
+      .should('exist');
   });
 
-  // Тест для добавления соуса в конструктор
+  it('Добавление начинки в конструктор', () => {
+    // Кликаем по первой кнопке "Добавить" в секции начинок (в списке ингредиентов)
+    cy.get(selectors.ingredientMain).first().find('button').click();
+
+    // Проверяем, что начинка появилась в конструкторе
+    cy.get(selectors.burgerConstructor)
+      .contains(
+        '.constructor-element__text',
+        'Биокотлета из марсианской Магнолии'
+      )
+      .should('exist');
+  });
+
   it('Добавление соуса в конструктор', () => {
-    cy.get('@sauceIngredients').contains('Добавить').click();
-    cy.contains(
-      'p.text_type_main-default',
-      'Соус с шипами Антарианского плоскоходца'
-    ).should('exist');
+    // Кликаем по первой кнопке "Добавить" в секции соусов (в списке ингредиентов)
+    cy.get(selectors.ingredientSauce).first().find('button').click();
+
+    // Проверяем, что соус появился в конструкторе
+    cy.get(selectors.burgerConstructor)
+      .contains(
+        '.constructor-element__text',
+        'Соус с шипами Антарианского плоскоходца'
+      )
+      .should('exist');
   });
 });
