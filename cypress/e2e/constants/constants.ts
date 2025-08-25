@@ -10,5 +10,10 @@ export const selectors = {
   burgerConstructor: '[data-cy="burger-constructor"]',
   ingredientNumber: '[data-testid="order-number"]',
   ingredientBunTop: '[data-cy="constructor-bun-top"]',
-  ingredientBunBottom: '[data-cy="constructor-bun-bottom"]'
+  ingredientBunBottom: '[data-cy="constructor-bun-bottom"]',
+  modalTitle: '[data-cy="modal-title"]',
+  modalCalories: '[data-cy="modal-calories"]',
+  modalProteins: '[data-cy="modal-proteins"]',
+  modalFat: '[data-cy="modal-fat"]',
+  modalCarbohydrates: '[data-cy="modal-carbohydrates"]'
 };

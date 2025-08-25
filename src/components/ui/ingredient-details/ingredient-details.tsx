@@ -14,23 +14,45 @@ export const IngredientDetailsUI: FC<IngredientDetailsUIProps> = memo(
           alt='изображение ингредиента.'
           src={image_large}
         />
-        <h3 className='text text_type_main-medium mt-2 mb-4'>{name}</h3>
+        <h3
+          data-cy='modal-title'
+          className='text text_type_main-medium mt-2 mb-4'
+        >
+          {name}
+        </h3>
         <ul className={`${styles.nutritional_values} text_type_main-default`}>
           <li className={styles.nutritional_value}>
             <p className={`text mb-2 ${styles.text}`}>Калории, ккал</p>
-            <p className={`text text_type_digits-default`}>{calories}</p>
+            <p
+              data-cy='modal-calories'
+              className={`text text_type_digits-default`}
+            >
+              {calories}
+            </p>
           </li>
           <li className={styles.nutritional_value}>
             <p className={`text mb-2 ${styles.text}`}>Белки, г</p>
-            <p className={`text text_type_digits-default`}>{proteins}</p>
+            <p
+              data-cy='modal-proteins'
+              className={`text text_type_digits-default`}
+            >
+              {proteins}
+            </p>
           </li>
           <li className={styles.nutritional_value}>
             <p className={`text mb-2 ${styles.text}`}>Жиры, г</p>
-            <p className={`text text_type_digits-default`}>{fat}</p>
+            <p data-cy='modal-fat' className={`text text_type_digits-default`}>
+              {fat}
+            </p>
           </li>
           <li className={styles.nutritional_value}>
             <p className={`text mb-2 ${styles.text}`}>Углеводы, г</p>
-            <p className={`text text_type_digits-default`}>{carbohydrates}</p>
+            <p
+              data-cy='modal-carbohydrates'
+              className={`text text_type_digits-default`}
+            >
+              {carbohydrates}
+            </p>
           </li>
         </ul>
       </div>
