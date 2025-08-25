@@ -118,4 +118,9 @@ describe('Тестирование работы оформления заказ�
       'exist'
     );
   });
+
+  afterEach(() => {
+    cy.clearLocalStorage(); // Очищаем localStorage
+    cy.clearCookies(); // Очищаем cookies
+  });
 });
