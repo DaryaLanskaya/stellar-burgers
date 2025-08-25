@@ -43,7 +43,7 @@ export const BurgerConstructor: FC = () => {
     if (!isAuthenticated) {
       return navigate('/login'); // Перенаправление на логин если не авторизован
     }
-    if (!constructorItems.bun || orderRequest) return; //  // Проверка на булку и загрузку
+    if (!constructorItems.bun || orderRequest) return; // Проверка на булку и загрузку
 
     // Формируем массив ID ингредиентов: [булка, ...ингредиенты]
     const ingredientsId: string[] = [

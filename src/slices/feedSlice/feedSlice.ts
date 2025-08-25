@@ -1,10 +1,17 @@
-import { getFeedsApi, getOrderByNumberApi, TOrderResponse } from '@api'; // API для получения данных
-import { TOrder, TOrdersData } from '@utils-types';
+import {
+  getFeedsApi,
+  getOrderByNumberApi,
+  TOrderResponse
+} from '../../utils/burger-api'; // API для получения данных
+
+import { TOrdersData } from '@utils-types';
+
 import {
   createSlice,
   createAsyncThunk,
   createSelector
 } from '@reduxjs/toolkit';
+
 import { RootState } from '../../services/store';
 
 // Тип для всех заказов

@@ -7,13 +7,14 @@ import {
   TLoginData,
   TRegisterData,
   updateUserApi
-} from '@api';
+} from '../../utils/burger-api'; // API для получения данных
+
 import {
   createAsyncThunk,
   createSelector,
-  createSlice,
-  SerializedError
+  createSlice
 } from '@reduxjs/toolkit';
+
 import { RootState } from 'src/services/store';
 
 // Слайс аутентификации

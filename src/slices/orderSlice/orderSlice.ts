@@ -1,10 +1,13 @@
-import { getOrdersApi, orderBurgerApi } from '@api';
+import { getOrdersApi, orderBurgerApi } from '../../utils/burger-api'; // API для получения данных
+
 import {
   createAsyncThunk,
   createSelector,
   createSlice
 } from '@reduxjs/toolkit';
+
 import { TOrder } from '@utils-types';
+
 import { RootState } from 'src/services/store';
 
 // Тип слайса оформления заказа. Код создает Redux-слайс для управления заказами в React-приложении.

@@ -4,7 +4,9 @@ import {
   createSelector,
   nanoid // для создания id
 } from '@reduxjs/toolkit';
+
 import { TConstructorIngredient, TIngredient } from '@utils-types';
+
 import { RootState } from '../../services/store';
 
 /**
@@ -19,7 +21,7 @@ type BurgerConstructorState = {
 };
 
 // Начальное состояние конструктора бургера
-const initialState: BurgerConstructorState = {
+export const initialState: BurgerConstructorState = {
   ingredients: [], // Пустой массив ингредиентов
   bun: null // Булка не выбрана
 };

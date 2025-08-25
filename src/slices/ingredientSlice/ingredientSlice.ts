@@ -1,17 +1,21 @@
-import { getIngredientsApi } from '@api'; // API для получения данных
+import { getIngredientsApi } from '../../utils/burger-api'; // API для получения данных
+
 import { TIngredient } from '@utils-types';
+
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 // Типизация слайса
 export type TIngredientsSlice = {
   ingredients: TIngredient[];
   error: string | null | undefined;
+  loading: boolean;
 };
 
-// начальное состояние хранилища
+// Начальное состояние хранилища
 export const initialState: TIngredientsSlice = {
   ingredients: [],
-  error: null
+  error: null,
+  loading: false
 };
 
 // Получаем данные об ингредиентах
@@ -22,7 +26,7 @@ export const getIngredients = createAsyncThunk(
 );
 
 // Создаём слайс
-const ingredientsSlice = createSlice({
+export const ingredientsSlice = createSlice({
   name: 'ingredients', // Указывается уникальное название для слайса.
   initialState, // Указывается начальное состояние хранилища, за которое отвечает слайс
   reducers: {}, // Можно сразу описывать редюсеры и экшены, которые они обрабатывают.
